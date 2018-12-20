@@ -195,4 +195,20 @@ public class SudokuRandomizer {
 		}
 		return premade;
 	}
+	
+	/**
+	* Randomizes the 2d array buy running the <code>swapRowInGroup</code>, 
+	* <code>swapColumnInGroup</code>, <code>swapGroupAsRow</code>, and
+	* <code>swapGroupAsColumn</code> methods.
+	*
+	* @param <T> the type of element used
+	* @param the 2d array to be used for swapping
+	*/
+	protected static <T extends Object> T[][] randomizeAllGroups(final T[][] premade) {
+		swapRowInGroup(premade);
+		swapColumnInGroup(premade);
+		swapGroupAsRow(premade);
+		swapGroupAsColumn(premade);
+		return premade;
+	}
 }

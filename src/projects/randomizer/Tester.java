@@ -31,7 +31,6 @@ public class Tester {
 		print(premade);
 	}
 
-
 	static void print(Integer[][] array) {
 		System.out.println(Arrays.deepToString(array)
 				.replace("], ", "]\n")
