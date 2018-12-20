@@ -9,11 +9,11 @@ import java.util.Random;
  * method involves randomly swapping columns within a certain three by three sub
  * region. The third and fourth method allows for randomly swapping three
  * adjacent sub regions at a time (by row or by column).
- * 
+ *
  * @see <a href=
  *      "https://blog.forret.com/2006/8/14/a-sudoku-challenge-generator/"> The
  *      algorithm used in this program</a>
- * 
+ *
  * @author Manu Puduvalli
  *
  */
@@ -24,9 +24,10 @@ public class SudokuRandomizer {
 	 * group. This is done by randomly choosing two rows from index 0 to 2, from
 	 * index 3 to 5, and from index 6 to 8 and swapping them within the confines of
 	 * its sub region.
-	 * 
+	 *
+	 * @param <T> the type of element used
 	 * @param the 2d array to be used for swapping
-	 * 
+	 *
 	 */
 	protected static <T extends Object> T[][] swapRowInGroup(final T[][] premade) {
 		Random rng = new Random();
@@ -61,9 +62,10 @@ public class SudokuRandomizer {
 	 * swapped as a group. This is done by randomly choosing two columns from index
 	 * 0 to 2, from index 3 to 5, and from index 6 to 8 and swapping them within the
 	 * confines of its sub region.
-	 * 
+	 *
+	 * @param <T> the type of element used
 	 * @param the 2d array to be used for swapping
-	 * 
+	 *
 	 */
 	protected static <T extends Object> T[][] swapColumnInGroup(final T[][] premade) {
 		Random rng = new Random();
@@ -100,9 +102,10 @@ public class SudokuRandomizer {
 	 * group 1. If the value falls between index 3 and index 5, this indicates group
 	 * 2. If the value falls between index 6 and index 8, this indicates group 3.
 	 * Afterwards, each corresponding group is swapped.
-	 * 
+	 *
+	 * @param <T> the type of element used
 	 * @param the 2d array to be used for swapping
-	 * 
+	 *
 	 */
 	protected static <T extends Object> T[][] swapGroupAsRow(final T[][] premade) {
 		Random rng = new Random();
@@ -149,9 +152,10 @@ public class SudokuRandomizer {
 	 * group 1. If the value falls between index 3 and index 5, this indicates group
 	 * 2. If the value falls between index 6 and index 8, this indicates group 3.
 	 * Afterwards, each corresponding group is swapped.
-	 * 
+	 *
+	 * @param <T> the type of element used
 	 * @param the 2d array to be used for swapping
-	 * 
+	 *
 	 */
 	protected static <T extends Object> T[][] swapGroupAsColumn(final T[][] premade) {
 		Random rng = new Random();
