@@ -29,7 +29,7 @@ public class SudokuRandomizer {
 	 * @param the 2d array to be used for swapping
 	 *
 	 */
-	protected static <T extends Object> T[][] swapRowInGroup(final T[][] premade) {
+	public static <T extends Object> T[][] swapRowInGroup(final T[][] premade) {
 		Random rng = new Random();
 		Container<T>[] rowTemp = Container.<T>array(9);
 		int randRow1 = 0; // The first row to be swapped
@@ -67,7 +67,7 @@ public class SudokuRandomizer {
 	 * @param the 2d array to be used for swapping
 	 *
 	 */
-	protected static <T extends Object> T[][] swapColumnInGroup(final T[][] premade) {
+	public static <T extends Object> T[][] swapColumnInGroup(final T[][] premade) {
 		Random rng = new Random();
 		Container<T>[] colTemp = Container.<T>array(9);
 		int randCol1 = 0; // The first row to be swapped
@@ -107,7 +107,7 @@ public class SudokuRandomizer {
 	 * @param the 2d array to be used for swapping
 	 *
 	 */
-	protected static <T extends Object> T[][] swapGroupAsRow(final T[][] premade) {
+	public static <T extends Object> T[][] swapGroupAsRow(final T[][] premade) {
 		Random rng = new Random();
 		// A temporary array for the values in each group
 		Container<T>[][] swapTemp = Container.<T>array(3,9);
@@ -157,7 +157,7 @@ public class SudokuRandomizer {
 	 * @param the 2d array to be used for swapping
 	 *
 	 */
-	protected static <T extends Object> T[][] swapGroupAsColumn(final T[][] premade) {
+	public static <T extends Object> T[][] swapGroupAsColumn(final T[][] premade) {
 		Random rng = new Random();
 		// A temporary array for the values in each group
 		Container<T>[][] swapTemp = Container.<T>array(9,3);
@@ -195,20 +195,21 @@ public class SudokuRandomizer {
 		}
 		return premade;
 	}
-	
+
 	/**
-	* Randomizes the 2d array buy running the <code>swapRowInGroup</code>, 
+	* Randomizes the 2d array buy running the <code>swapRowInGroup</code>,
 	* <code>swapColumnInGroup</code>, <code>swapGroupAsRow</code>, and
 	* <code>swapGroupAsColumn</code> methods.
 	*
 	* @param <T> the type of element used
 	* @param the 2d array to be used for swapping
 	*/
-	protected static <T extends Object> T[][] randomizeAllGroups(final T[][] premade) {
+	public static <T extends Object> T[][] randomizeAllGroups(final T[][] premade) {
 		swapRowInGroup(premade);
 		swapColumnInGroup(premade);
 		swapGroupAsRow(premade);
 		swapGroupAsColumn(premade);
 		return premade;
 	}
+
 }
