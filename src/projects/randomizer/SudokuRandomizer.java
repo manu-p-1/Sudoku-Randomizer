@@ -26,8 +26,8 @@ public class SudokuRandomizer {
 	 * its sub region.
 	 *
 	 * @param <T> the type of element used
-	 * @param the 2d array to be used for swapping
-	 *
+	 * @param  premade the 2d array to be used for swapping
+	 * @return premade the 2d array type
 	 */
 	public static <T extends Object> T[][] swapRowInGroup(final T[][] premade) {
 		Random rng = new Random();
@@ -64,8 +64,8 @@ public class SudokuRandomizer {
 	 * confines of its sub region.
 	 *
 	 * @param <T> the type of element used
-	 * @param the 2d array to be used for swapping
-	 *
+	 * @param premade the 2d array to be used for swapping
+	 * @return premade the 2d array type
 	 */
 	public static <T extends Object> T[][] swapColumnInGroup(final T[][] premade) {
 		Random rng = new Random();
@@ -104,8 +104,8 @@ public class SudokuRandomizer {
 	 * Afterwards, each corresponding group is swapped.
 	 *
 	 * @param <T> the type of element used
-	 * @param the 2d array to be used for swapping
-	 *
+	 * @param premade the 2d array to be used for swapping
+	 * @return premade the 2d array type
 	 */
 	public static <T extends Object> T[][] swapGroupAsRow(final T[][] premade) {
 		Random rng = new Random();
@@ -154,8 +154,8 @@ public class SudokuRandomizer {
 	 * Afterwards, each corresponding group is swapped.
 	 *
 	 * @param <T> the type of element used
-	 * @param the 2d array to be used for swapping
-	 *
+	 * @param premade the 2d array to be used for swapping
+	 * @return premade the 2d array type
 	 */
 	public static <T extends Object> T[][] swapGroupAsColumn(final T[][] premade) {
 		Random rng = new Random();
@@ -202,7 +202,8 @@ public class SudokuRandomizer {
 	* <code>swapGroupAsColumn</code> methods.
 	*
 	* @param <T> the type of element used
-	* @param the 2d array to be used for swapping
+	* @param premade the 2d array to be used for swapping
+	* @return premade the 2d array type
 	*/
 	public static <T extends Object> T[][] randomizeAllGroups(final T[][] premade) {
 		swapRowInGroup(premade);
