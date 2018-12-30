@@ -1,6 +1,8 @@
-package projects.randomizer;
+package projects.drivers;
 
 import java.util.Arrays;
+
+import projects.randomizer.SudokuRandomizer;
 
 /**
 * A simple class to demonstrate the SudokuRandomizer class
