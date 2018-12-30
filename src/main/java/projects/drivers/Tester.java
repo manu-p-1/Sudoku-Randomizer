@@ -5,10 +5,15 @@ import java.util.Arrays;
 import projects.randomizer.SudokuRandomizer;
 
 /**
-* A simple class to demonstrate the SudokuRandomizer class
+* A simple class to demonstrate the SudokuRandomizer class.
 */
 public class Tester {
 
+	/**
+	 * Main method contains items to test.
+	 * 
+	 * @param args arguments to be used
+	 */
 	public static void main(String[] args) {
 
 		Integer[][] premade = {
@@ -33,6 +38,11 @@ public class Tester {
 		print(premade);
 	}
 
+	/**
+	 * Prints a 2d array with some visual enhancements.
+	 * 
+	 * @param array the array to be printed
+	 */
 	static void print(Integer[][] array) {
 		System.out.println(Arrays.deepToString(array)
 				.replace("], ", "]\n")
