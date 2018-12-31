@@ -212,5 +212,4 @@ public class SudokuRandomizer {
 		swapGroupAsColumn(premade);
 		return premade;
 	}
-
 }
