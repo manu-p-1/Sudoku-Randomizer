@@ -10,8 +10,12 @@
   <a href="https://www.georgiapower.com/">
     <img src="https://forthebadge.com/images/badges/powered-by-electricity.svg">
   </a>
-  <img src="https://img.shields.io/badge/Java%20Version-%3E%3D%201.8.0%20%7C%20%3C%3D%2010.0.2-orange.svg?style=for-the-badge">
-  <img src="https://img.shields.io/github/commits-since/manu-p-1/Sudoku-Randomizer/v1.0.0.svg?style=for-the-badge">
+  <a href="https://www.java.com/en/download/">
+    <img src="https://img.shields.io/badge/Java%20Version-%3E%3D%201.8.0%20-orange.svg?style=for-the-badge">
+  </a>
+  <a href="https://github.com/manu-p-1/Sudoku-Randomizer/commits/master">
+    <img src="https://img.shields.io/github/commits-since/manu-p-1/Sudoku-Randomizer/v1.0.0.svg?style=for-the-badge">
+  </a>
 </p>
 
 
