@@ -8,7 +8,7 @@
     <img src="https://forthebadge.com/images/badges/built-with-swag.svg">
   </a>
   <a href="https://www.georgiapower.com/">
-    <img src="https://forthebadge.com/images/badges/powered-by-electricity.svg">
+    <img src="https://forthebadge.com/images/badges/powered-by-electricity.svg">  
   </a>
   <a href="https://www.java.com/en/download/">
     <img src="https://img.shields.io/badge/Java%20Version-%3E%3D%201.8.0%20-orange.svg?style=for-the-badge">
