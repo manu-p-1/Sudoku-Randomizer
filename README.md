@@ -38,4 +38,10 @@ For more information on this category, visit: https://en.wikipedia.org/wiki/Sudo
 - **Sudoku Randomizer v1.0.0 is out for release!** at https://github.com/manu-p-1/Sudoku-Randomizer/releases
 
 ## Documentation:
-http://cobweb.cs.uga.edu/~manohar/personal-sudoku-apidocs/
+http://cobweb.cs.uga.edu/~manohar/personal-sudoku-apidocs/  
+
+## Media:
+<p align="center">
+    <b>The Sudoku Randomizer being utilized on a real program:</b>
+    <img src="https://github.com/manu-p-1/Sudoku-Randomizer/blob/master/Application_Media/Application_Recording.gif">   
+</p>
