@@ -26,7 +26,12 @@
 
 <br/>
 
-A useful tool to randomize a Sudoku board for a game. :computer: :video_game:  
+A useful tool to randomize a Sudoku board for a game. :computer: :video_game:    
+### Advantages
+- Generics allow game board to be any type that extends java.lang.Comparable
+- Fast
+- JAR provided
+
 For more information on this category, visit: https://en.wikipedia.org/wiki/Sudoku_solving_algorithms
 
 ## Updates:
