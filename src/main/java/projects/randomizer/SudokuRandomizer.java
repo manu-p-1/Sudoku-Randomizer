@@ -229,11 +229,12 @@ public class SudokuRandomizer {
 	* @param premade the 2D array to be used for swapping
 	* @return premade the 2D array type
 	*/
-	public static <T extends Comparable<T>> T[][] randomizeAllGroups(final T[][] premade) {
+	public static <T extends Comparable<T>> T[][] randomizeAllGroupsOnce(final T[][] premade) {
 		swapRowInGroup(premade);
 		swapColumnInGroup(premade);
 		swapGroupAsRow(premade);
 		swapGroupAsColumn(premade);
+		transpose(premade);
 		return premade;
 	}
 }
