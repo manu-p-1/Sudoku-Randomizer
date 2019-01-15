@@ -35,7 +35,7 @@ A useful tool to randomize a Sudoku board for a game. :computer: :video_game:
 For more information on this category, visit: https://en.wikipedia.org/wiki/Sudoku_solving_algorithms
 
 ## Updates:
-- **Sudoku Randomizer v1.0.0 is out for release!** at https://github.com/manu-p-1/Sudoku-Randomizer/releases
+- **Sudoku Randomizer v2.0.0 is out for release!** at https://github.com/manu-p-1/Sudoku-Randomizer/releases
 
 ## Documentation:
 http://cobweb.cs.uga.edu/~manohar/personal-sudoku-apidocs/  
