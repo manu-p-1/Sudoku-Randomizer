@@ -26,10 +26,10 @@ public class SudokuRandomizer {
 	 * its sub region.
 	 *
 	 * @param <T> the type of element used
-	 * @param  premade the 2d array to be used for swapping
-	 * @return premade the 2d array type
+	 * @param  premade the 2D array to be used for swapping
+	 * @return premade the 2D array type
 	 */
-	public static <T extends Object> T[][] swapRowInGroup(final T[][] premade) {
+	public static <T extends Comparable<T>> T[][] swapRowInGroup(final T[][] premade) {
 		Random rng = new Random();
 		Container<T>[] rowTemp = Container.<T>array(9);
 		int randRow1 = 0; // The first row to be swapped
@@ -64,10 +64,10 @@ public class SudokuRandomizer {
 	 * confines of its sub region.
 	 *
 	 * @param <T> the type of element used
-	 * @param premade the 2d array to be used for swapping
-	 * @return premade the 2d array type
+	 * @param premade the 2D array to be used for swapping
+	 * @return premade the 2D array type
 	 */
-	public static <T extends Object> T[][] swapColumnInGroup(final T[][] premade) {
+	public static <T extends Comparable<T>> T[][] swapColumnInGroup(final T[][] premade) {
 		Random rng = new Random();
 		Container<T>[] colTemp = Container.<T>array(9);
 		int randCol1 = 0; // The first row to be swapped
@@ -104,10 +104,10 @@ public class SudokuRandomizer {
 	 * Afterwards, each corresponding group is swapped.
 	 *
 	 * @param <T> the type of element used
-	 * @param premade the 2d array to be used for swapping
-	 * @return premade the 2d array type
+	 * @param premade the 2D array to be used for swapping
+	 * @return premade the 2D array type
 	 */
-	public static <T extends Object> T[][] swapGroupAsRow(final T[][] premade) {
+	public static <T extends Comparable<T>> T[][] swapGroupAsRow(final T[][] premade) {
 		Random rng = new Random();
 		// A temporary array for the values in each group
 		Container<T>[][] swapTemp = Container.<T>array(3,9);
@@ -154,10 +154,10 @@ public class SudokuRandomizer {
 	 * Afterwards, each corresponding group is swapped.
 	 *
 	 * @param <T> the type of element used
-	 * @param premade the 2d array to be used for swapping
-	 * @return premade the 2d array type
+	 * @param premade the 2D array to be used for swapping
+	 * @return premade the 2D array type
 	 */
-	public static <T extends Object> T[][] swapGroupAsColumn(final T[][] premade) {
+	public static <T extends Comparable<T>> T[][] swapGroupAsColumn(final T[][] premade) {
 		Random rng = new Random();
 		// A temporary array for the values in each group
 		Container<T>[][] swapTemp = Container.<T>array(9,3);
@@ -195,17 +195,41 @@ public class SudokuRandomizer {
 		}
 		return premade;
 	}
+	
+	/**
+	 * Transposes the 2D array. Turns the rows in into columns and vice versa.
+	 * In essence, the 2D array is being rotated to the right by 90 degrees.
+	 * 
+	 * @param <T> the type of element used
+	 * @param premade the 2D array to be used for swapping
+	 * @return premade the 2D array type
+	 */
+	public static <T extends Comparable<T>> T[][] transpose(final T[][] premade){
+		Container<T>[][] copy = Container.array(9,9);
+	    for (int row = 0; row < 9; ++row) {
+	        for (int col = 0; col < 9; ++col) {
+	        	//Transposition
+	            copy[row][col] = new Container<T>(premade[9 - col - 1][row]); 
+	        }
+	    }
+	    for (int row = 0; row < 9; ++row) {
+	        for (int col = 0; col < 9; ++col) {
+	            premade[row][col] = copy[row][col].get();
+	        }
+	    }
+	    return premade;
+	}
 
 	/**
-	* Randomizes the 2d array buy running the <code>swapRowInGroup</code>,
+	* Randomizes the 2D array buy running the <code>swapRowInGroup</code>,
 	* <code>swapColumnInGroup</code>, <code>swapGroupAsRow</code>, and
 	* <code>swapGroupAsColumn</code> methods.
 	*
 	* @param <T> the type of element used
-	* @param premade the 2d array to be used for swapping
-	* @return premade the 2d array type
+	* @param premade the 2D array to be used for swapping
+	* @return premade the 2D array type
 	*/
-	public static <T extends Object> T[][] randomizeAllGroups(final T[][] premade) {
+	public static <T extends Comparable<T>> T[][] randomizeAllGroups(final T[][] premade) {
 		swapRowInGroup(premade);
 		swapColumnInGroup(premade);
 		swapGroupAsRow(premade);
