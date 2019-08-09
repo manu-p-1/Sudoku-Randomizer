@@ -10,9 +10,6 @@ import java.util.Random;
  * region. The third and fourth method allows for randomly swapping three
  * adjacent sub regions at a time (by row or by column).
  *
- * @see <a href=
- *      "https://blog.forret.com/2006/8/14/a-sudoku-challenge-generator/"> The
- *      algorithm used in this program</a>
  *
  * @author Manu Puduvalli
  *
