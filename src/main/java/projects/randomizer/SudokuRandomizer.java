@@ -15,18 +15,18 @@ import java.util.Random;
  *
  */
 public class SudokuRandomizer<T extends Comparable<T>> {
-	
+
 	private final T[][] board;
-	
+
 	/**
 	 * This Constructor Sets the board.
-	 * 
+	 *
 	 * @param board the Sudoku board
 	 */
 	public SudokuRandomizer(T[][] board) {
 		this.board = board;
 	}
-		
+
 	/**
 	 * Swaps two random rows within every three by three sub region. Rather than
 	 * swapping every row within every single sub region, The rows are swapped as a
@@ -196,10 +196,10 @@ public class SudokuRandomizer<T extends Comparable<T>> {
 		}
 		return this;
 	}
-	
+
 	/**
 	 * Transposes the 2D array. Turns the rows in into columns and vice versa.
-	 * 
+	 *
 	 * @return SudokuRandomizer
 	 */
 	public SudokuRandomizer<T> transpose(){
@@ -207,7 +207,7 @@ public class SudokuRandomizer<T extends Comparable<T>> {
 	    for (int row = 0; row < 9; ++row) {
 	        for (int col = 0; col < 9; ++col) {
 	        	//Transposition
-	            copy[row][col] = new Container<T>(board[9 - col - 1][row]); 
+	            copy[row][col] = new Container<T>(board[9 - col - 1][row]);
 	        }
 	    }
 	    for (int row = 0; row < 9; ++row) {
@@ -220,7 +220,7 @@ public class SudokuRandomizer<T extends Comparable<T>> {
 
 	/**
 	* Randomizes the 2D array buy running {@link SudokuRandomizer#swapRowInGroup()},
-	* {@link SudokuRandomizer#swapColumnInGroup()}, {@link SudokuRandomizer#swapGroupAsRow()}, 
+	* {@link SudokuRandomizer#swapColumnInGroup()}, {@link SudokuRandomizer#swapGroupAsRow()},
 	* and {@link SudokuRandomizer#swapGroupAsColumn()}.
 	*
 	* @return SudokuRandomizer
@@ -233,16 +233,16 @@ public class SudokuRandomizer<T extends Comparable<T>> {
 		transpose();
 		return this;
 	}
-	
+
 	/**
 	 * Returns the modified board.
-	 * 
+	 *
 	 * @return this board
 	 */
 	public T[][] get(){
-		return board;
+		return this.board;
 	}
-	
+
 	/**
 	 * Prints a 2d array with some visual enhancements.
 	 *
