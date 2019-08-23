@@ -1,6 +1,5 @@
 package projects.drivers;
 
-import java.util.Arrays;
 import projects.randomizer.SudokuRandomizer;
 
 /**
@@ -25,27 +24,16 @@ public class Tester {
 				{ 3, 4, 5, 6, 7, 8, 9, 1, 2 },
 				{ 6, 7, 8, 9, 1, 2, 3, 4, 5 },
 				{ 9, 1, 2, 3, 4, 5, 6, 7, 8 } };
-
-		print(premade);
-		SudokuRandomizer.swapRowInGroup(premade);
-		System.out.println();
-		System.out.println();
-		print(premade);
-		SudokuRandomizer.swapGroupAsColumn(premade);
-		System.out.println();
-		System.out.println();
-		print(premade);
-	}
-
-	/**
-	 * Prints a 2d array with some visual enhancements.
-	 *
-	 * @param array the array to be printed
-	 */
-	static void print(Integer[][] array) {
-		System.out.println(Arrays.deepToString(array)
-				.replace("], ", "]\n")
-				.replace("[[", "[")
-				.replace("]]", "]"));
+		
+		/*
+		 * Returning "this" allows room for additional functionality
+		 */
+		SudokuRandomizer.print(new SudokuRandomizer<Integer>(premade)
+				.swapRowInGroup()
+				.swapColumnInGroup()
+				.swapGroupAsRow()
+				.swapGroupAsColumn()
+				.transpose()
+				.get());
 	}
 }

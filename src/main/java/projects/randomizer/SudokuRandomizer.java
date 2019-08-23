@@ -1,4 +1,5 @@
 package projects.randomizer;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -10,11 +11,22 @@ import java.util.Random;
  * region. The third and fourth method allows for randomly swapping three
  * adjacent sub regions at a time (by row or by column).
  *
- *
  * @author Manu Puduvalli
  *
  */
-public class SudokuRandomizer {
+public class SudokuRandomizer<T extends Comparable<T>> {
+	
+	private final T[][] board;
+	
+	/**
+	 * This Constructor Sets the board.
+	 * 
+	 * @param board the Sudoku board
+	 */
+	public SudokuRandomizer(T[][] board) {
+		this.board = board;
+	}
+		
 	/**
 	 * Swaps two random rows within every three by three sub region. Rather than
 	 * swapping every row within every single sub region, The rows are swapped as a
@@ -22,17 +34,15 @@ public class SudokuRandomizer {
 	 * index 3 to 5, and from index 6 to 8 and swapping them within the confines of
 	 * its sub region.
 	 *
-	 * @param <T> the type of element used
-	 * @param  premade the 2D array to be used for swapping
-	 * @return premade the 2D array type
+	 * @return SudokuRandomizer
 	 */
-	public static <T extends Comparable<T>> T[][] swapRowInGroup(final T[][] premade) {
+	public SudokuRandomizer<T> swapRowInGroup() {
 		Random rng = new Random();
 		Container<T>[] rowTemp = Container.<T>array(9);
 		int randRow1 = 0; // The first row to be swapped
 		int randRow2 = 0; // The second row to be swapped
 		// Moves every third row to make sure we stick to the same group
-		for (int row = 0; row < premade.length; row += 3) {
+		for (int row = 0; row < board.length; row += 3) {
 			if (row <= 2) {
 				randRow1 = rng.nextInt(3);
 				randRow2 = rng.nextInt(3);
@@ -44,13 +54,13 @@ public class SudokuRandomizer {
 				randRow2 = rng.nextInt(3) + 6;
 			}
 			// Swap loop
-			for (int col = 0; col < premade[randRow1].length; col++) {
-				rowTemp[col] = new Container<T>(premade[randRow1][col]);
-				premade[randRow1][col] = premade[randRow2][col];
-				premade[randRow2][col] = rowTemp[col].get();
+			for (int col = 0; col < board[randRow1].length; col++) {
+				rowTemp[col] = new Container<T>(board[randRow1][col]);
+				board[randRow1][col] = board[randRow2][col];
+				board[randRow2][col] = rowTemp[col].get();
 			}
 		}
-		return premade;
+		return this;
 	}
 
 	/**
@@ -60,18 +70,16 @@ public class SudokuRandomizer {
 	 * 0 to 2, from index 3 to 5, and from index 6 to 8 and swapping them within the
 	 * confines of its sub region.
 	 *
-	 * @param <T> the type of element used
-	 * @param premade the 2D array to be used for swapping
-	 * @return premade the 2D array type
+	 * @return SudokuRandomizer
 	 */
-	public static <T extends Comparable<T>> T[][] swapColumnInGroup(final T[][] premade) {
+	public SudokuRandomizer<T> swapColumnInGroup() {
 		Random rng = new Random();
 		Container<T>[] colTemp = Container.<T>array(9);
 		int randCol1 = 0; // The first row to be swapped
 		int randCol2 = 0; // The second row to be swapped
 		int columnRep = 0;
 		// Moves every third column to make sure we stick to the same group
-		for (columnRep = 0; columnRep < premade.length; columnRep += 3) {
+		for (columnRep = 0; columnRep < board.length; columnRep += 3) {
 			if (columnRep <= 2) {
 				randCol1 = rng.nextInt(3);
 				randCol2 = rng.nextInt(3);
@@ -83,13 +91,13 @@ public class SudokuRandomizer {
 				randCol2 = rng.nextInt(3) + 6;
 			}
 			// Swap loop
-			for (int row = 0; row < premade.length; row++) {
-				colTemp[row] = new Container<T>(premade[row][randCol1]);
-				premade[row][randCol1] = premade[row][randCol2];
-				premade[row][randCol2] = colTemp[row].get();
+			for (int row = 0; row < board.length; row++) {
+				colTemp[row] = new Container<T>(board[row][randCol1]);
+				board[row][randCol1] = board[row][randCol2];
+				board[row][randCol2] = colTemp[row].get();
 			}
 		}
-		return premade;
+		return this;
 	}
 
 	/**
@@ -100,11 +108,9 @@ public class SudokuRandomizer {
 	 * 2. If the value falls between index 6 and index 8, this indicates group 3.
 	 * Afterwards, each corresponding group is swapped.
 	 *
-	 * @param <T> the type of element used
-	 * @param premade the 2D array to be used for swapping
-	 * @return premade the 2D array type
+	 * @return SudokuRandomizer
 	 */
-	public static <T extends Comparable<T>> T[][] swapGroupAsRow(final T[][] premade) {
+	public SudokuRandomizer<T> swapGroupAsRow() {
 		Random rng = new Random();
 		// A temporary array for the values in each group
 		Container<T>[][] swapTemp = Container.<T>array(3,9);
@@ -121,25 +127,25 @@ public class SudokuRandomizer {
 		if (randGroup2 >= 6) {randGroup2 = 6;}
 		// Puts the values of group 1 in swapTemp
 		for (int row = randGroup1; row < randGroup1 + 3; row++) {
-			for (int col = 0; col < premade[row].length; col++) {
-				swapTemp[row - randGroup1][col] = new Container<T>(premade[row][col]);
+			for (int col = 0; col < board[row].length; col++) {
+				swapTemp[row - randGroup1][col] = new Container<T>(board[row][col]);
 			}
 		}
 		// Puts the values of group 2 where group 1 was
 		int counter = randGroup2;
 		for (int row = randGroup1; row < randGroup1 + 3; row++) {
-			for (int col = 0; col < premade[row].length; col++) {
-				premade[row][col] = premade[counter][col];
+			for (int col = 0; col < board[row].length; col++) {
+				board[row][col] = board[counter][col];
 			}
 			counter++;
 		}
 		// Puts the values of swapTemp where group 2 was
 		for (int row = randGroup2; row < randGroup2 + 3; row++) {
-			for (int col = 0; col < premade[row].length; col++) {
-				premade[row][col] = swapTemp[row - randGroup2][col].get();
+			for (int col = 0; col < board[row].length; col++) {
+				board[row][col] = swapTemp[row - randGroup2][col].get();
 			}
 		}
-		return premade;
+		return this;
 	}
 
 	/**
@@ -150,11 +156,9 @@ public class SudokuRandomizer {
 	 * 2. If the value falls between index 6 and index 8, this indicates group 3.
 	 * Afterwards, each corresponding group is swapped.
 	 *
-	 * @param <T> the type of element used
-	 * @param premade the 2D array to be used for swapping
-	 * @return premade the 2D array type
+	 * @return SudokuRandomizer
 	 */
-	public static <T extends Comparable<T>> T[][] swapGroupAsColumn(final T[][] premade) {
+	public SudokuRandomizer<T> swapGroupAsColumn() {
 		Random rng = new Random();
 		// A temporary array for the values in each group
 		Container<T>[][] swapTemp = Container.<T>array(9,3);
@@ -172,14 +176,14 @@ public class SudokuRandomizer {
 		// Puts the values of group 1 in swapTemp
 		for (int row = 0; row < 9; row++) {
 			for (int col = randGroup1; col < randGroup1 + 3; col++) {
-				swapTemp[row][col - randGroup1] = new Container<T>(premade[row][col]);
+				swapTemp[row][col - randGroup1] = new Container<T>(board[row][col]);
 			}
 		}
 		// Puts the values of group 2 where group 1 was
 		int counter = randGroup2;
 		for (int row = 0; row < 9; row++) {
 			for (int col = randGroup1; col < randGroup1 + 3; col++) {
-				premade[row][col] = premade[row][counter];
+				board[row][col] = board[row][counter];
 				counter++;
 			}
 			counter = randGroup2;
@@ -187,51 +191,67 @@ public class SudokuRandomizer {
 		// Puts the values of swapTemp where group 2 was
 		for (int row = 0; row < 9; row++) {
 			for (int col = randGroup2; col < randGroup2 + 3; col++) {
-				premade[row][col] = swapTemp[row][col - randGroup2].get();
+				board[row][col] = swapTemp[row][col - randGroup2].get();
 			}
 		}
-		return premade;
+		return this;
 	}
 	
 	/**
 	 * Transposes the 2D array. Turns the rows in into columns and vice versa.
-	 * In essence, the 2D array is being rotated to the right by 90 degrees.
 	 * 
-	 * @param <T> the type of element used
-	 * @param premade the 2D array to be used for swapping
-	 * @return premade the 2D array type
+	 * @return SudokuRandomizer
 	 */
-	public static <T extends Comparable<T>> T[][] transpose(final T[][] premade){
+	public SudokuRandomizer<T> transpose(){
 		Container<T>[][] copy = Container.array(9,9);
 	    for (int row = 0; row < 9; ++row) {
 	        for (int col = 0; col < 9; ++col) {
 	        	//Transposition
-	            copy[row][col] = new Container<T>(premade[9 - col - 1][row]); 
+	            copy[row][col] = new Container<T>(board[9 - col - 1][row]); 
 	        }
 	    }
 	    for (int row = 0; row < 9; ++row) {
 	        for (int col = 0; col < 9; ++col) {
-	            premade[row][col] = copy[row][col].get();
+	            board[row][col] = copy[row][col].get();
 	        }
 	    }
-	    return premade;
+	    return this;
 	}
 
 	/**
-	* Randomizes the 2D array buy running the <code>swapRowInGroup</code>,
-	* <code>swapColumnInGroup</code>, <code>swapGroupAsRow</code>, and
-	* <code>swapGroupAsColumn</code> methods.
+	* Randomizes the 2D array buy running {@link SudokuRandomizer#swapRowInGroup()},
+	* {@link SudokuRandomizer#swapColumnInGroup()}, {@link SudokuRandomizer#swapGroupAsRow()}, 
+	* and {@link SudokuRandomizer#swapGroupAsColumn()}.
 	*
-	* @param <T> the type of element used
-	* @param premade the 2D array to be used for swapping
-	* @return premade the 2D array type
+	* @return SudokuRandomizer
 	*/
-	public static <T extends Comparable<T>> T[][] randomizeAllGroupsOnce(final T[][] premade) {
-		swapRowInGroup(premade);
-		swapColumnInGroup(premade);
-		swapGroupAsRow(premade);
-		swapGroupAsColumn(premade);
-		transpose(premade);
-		return premade;
+	public SudokuRandomizer<T> randomizeAllGroupsOnce() {
+		swapRowInGroup();
+		swapColumnInGroup();
+		swapGroupAsRow();
+		swapGroupAsColumn();
+		transpose();
+		return this;
+	}
+	
+	/**
+	 * Returns the modified board.
+	 * 
+	 * @return this board
+	 */
+	public T[][] get(){
+		return board;
+	}
+	
+	/**
+	 * Prints a 2d array with some visual enhancements.
+	 *
+	 * @param array the array to be printed
+	 */
+	public static <T> void print(T[][] array) {
+		System.out.println(Arrays.deepToString(array)
+				.replace("], ", "]\n")
+				.replace("[[", "[")
+				.replace("]]", "]"));
 	}
 }
