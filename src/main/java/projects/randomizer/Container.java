@@ -8,7 +8,7 @@ package projects.randomizer;
  */
 public class Container<E> {
 
-	private E elem; //The element in this container
+	private final E elem; //The element in this container
 	
 	/**
 	 * Class constructor to create a new container with the given element.

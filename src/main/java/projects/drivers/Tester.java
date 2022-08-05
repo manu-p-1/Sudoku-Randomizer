@@ -28,7 +28,7 @@ public class Tester {
 		/*
 		 * Returning "this" allows room for additional functionality
 		 */
-		SudokuRandomizer.print(new SudokuRandomizer<Integer>(premade)
+		SudokuRandomizer.print(new SudokuRandomizer<>(premade)
 				.swapRowInGroup()
 				.swapColumnInGroup()
 				.swapGroupAsRow()

@@ -38,15 +38,15 @@ public class SudokuRandomizer<T extends Comparable<T>> {
 	 */
 	public SudokuRandomizer<T> swapRowInGroup() {
 		Random rng = new Random();
-		Container<T>[] rowTemp = Container.<T>array(9);
-		int randRow1 = 0; // The first row to be swapped
-		int randRow2 = 0; // The second row to be swapped
+		Container<T>[] rowTemp = Container.array(9);
+		int randRow1; // The first row to be swapped
+		int randRow2; // The second row to be swapped
 		// Moves every third row to make sure we stick to the same group
 		for (int row = 0; row < board.length; row += 3) {
 			if (row <= 2) {
 				randRow1 = rng.nextInt(3);
 				randRow2 = rng.nextInt(3);
-			} else if (row >= 3 && row <= 5) {
+			} else if (row <= 5) {
 				randRow1 = rng.nextInt(3) + 3;
 				randRow2 = rng.nextInt(3) + 3;
 			} else {
@@ -55,7 +55,7 @@ public class SudokuRandomizer<T extends Comparable<T>> {
 			}
 			// Swap loop
 			for (int col = 0; col < board[randRow1].length; col++) {
-				rowTemp[col] = new Container<T>(board[randRow1][col]);
+				rowTemp[col] = new Container<>(board[randRow1][col]);
 				board[randRow1][col] = board[randRow2][col];
 				board[randRow2][col] = rowTemp[col].get();
 			}
@@ -74,16 +74,16 @@ public class SudokuRandomizer<T extends Comparable<T>> {
 	 */
 	public SudokuRandomizer<T> swapColumnInGroup() {
 		Random rng = new Random();
-		Container<T>[] colTemp = Container.<T>array(9);
-		int randCol1 = 0; // The first row to be swapped
-		int randCol2 = 0; // The second row to be swapped
-		int columnRep = 0;
+		Container<T>[] colTemp = Container.array(9);
+		int randCol1; // The first row to be swapped
+		int randCol2; // The second row to be swapped
+		int columnRep;
 		// Moves every third column to make sure we stick to the same group
 		for (columnRep = 0; columnRep < board.length; columnRep += 3) {
 			if (columnRep <= 2) {
 				randCol1 = rng.nextInt(3);
 				randCol2 = rng.nextInt(3);
-			} else if (columnRep >= 3 && columnRep <= 5) {
+			} else if (columnRep <= 5) {
 				randCol1 = rng.nextInt(3) + 3;
 				randCol2 = rng.nextInt(3) + 3;
 			} else {
@@ -92,7 +92,7 @@ public class SudokuRandomizer<T extends Comparable<T>> {
 			}
 			// Swap loop
 			for (int row = 0; row < board.length; row++) {
-				colTemp[row] = new Container<T>(board[row][randCol1]);
+				colTemp[row] = new Container<>(board[row][randCol1]);
 				board[row][randCol1] = board[row][randCol2];
 				board[row][randCol2] = colTemp[row].get();
 			}
@@ -113,7 +113,7 @@ public class SudokuRandomizer<T extends Comparable<T>> {
 	public SudokuRandomizer<T> swapGroupAsRow() {
 		Random rng = new Random();
 		// A temporary array for the values in each group
-		Container<T>[][] swapTemp = Container.<T>array(3,9);
+		Container<T>[][] swapTemp = Container.array(3,9);
 		int randGroup1 = rng.nextInt(9); // The first group to be swapped
 		int randGroup2 = rng.nextInt(9); // The second group to be swapped
 		// index 0 marks the beginning of the first group
@@ -128,15 +128,13 @@ public class SudokuRandomizer<T extends Comparable<T>> {
 		// Puts the values of group 1 in swapTemp
 		for (int row = randGroup1; row < randGroup1 + 3; row++) {
 			for (int col = 0; col < board[row].length; col++) {
-				swapTemp[row - randGroup1][col] = new Container<T>(board[row][col]);
+				swapTemp[row - randGroup1][col] = new Container<>(board[row][col]);
 			}
 		}
 		// Puts the values of group 2 where group 1 was
 		int counter = randGroup2;
 		for (int row = randGroup1; row < randGroup1 + 3; row++) {
-			for (int col = 0; col < board[row].length; col++) {
-				board[row][col] = board[counter][col];
-			}
+			System.arraycopy(board[counter], 0, board[row], 0, board[row].length);
 			counter++;
 		}
 		// Puts the values of swapTemp where group 2 was
@@ -161,7 +159,7 @@ public class SudokuRandomizer<T extends Comparable<T>> {
 	public SudokuRandomizer<T> swapGroupAsColumn() {
 		Random rng = new Random();
 		// A temporary array for the values in each group
-		Container<T>[][] swapTemp = Container.<T>array(9,3);
+		Container<T>[][] swapTemp = Container.array(9,3);
 		int randGroup1 = rng.nextInt(9); // The first group to be swapped
 		int randGroup2 = rng.nextInt(9); // The second group to be swapped
 		// index 0 marks the beginning of the first group
@@ -176,7 +174,7 @@ public class SudokuRandomizer<T extends Comparable<T>> {
 		// Puts the values of group 1 in swapTemp
 		for (int row = 0; row < 9; row++) {
 			for (int col = randGroup1; col < randGroup1 + 3; col++) {
-				swapTemp[row][col - randGroup1] = new Container<T>(board[row][col]);
+				swapTemp[row][col - randGroup1] = new Container<>(board[row][col]);
 			}
 		}
 		// Puts the values of group 2 where group 1 was
@@ -207,7 +205,7 @@ public class SudokuRandomizer<T extends Comparable<T>> {
 	    for (int row = 0; row < 9; ++row) {
 	        for (int col = 0; col < 9; ++col) {
 	        	//Transposition
-	            copy[row][col] = new Container<T>(board[9 - col - 1][row]);
+	            copy[row][col] = new Container<>(board[9 - col - 1][row]);
 	        }
 	    }
 	    for (int row = 0; row < 9; ++row) {
@@ -225,13 +223,13 @@ public class SudokuRandomizer<T extends Comparable<T>> {
 	*
 	* @return SudokuRandomizer
 	*/
-	public SudokuRandomizer<T> randomizeAllGroupsOnce() {
+	public T[][] randomizeAll() {
 		swapRowInGroup();
 		swapColumnInGroup();
 		swapGroupAsRow();
 		swapGroupAsColumn();
 		transpose();
-		return this;
+		return this.board;
 	}
 
 	/**
